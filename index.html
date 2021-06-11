@@ -28,22 +28,22 @@
         <label id="err" class="err">Must be number!</label>
         <br id="err2" class="err">
         <br id="err3" class="err">
+        <label>
+            <input class="radio" type="radio" name="attachment" value="https://tenor.com/view/dies-of-cringe-cringe-gif-20747133" checked>
+            <img class="radioimg" src="gif.gif">
+        </label>
+        <label>
+            <input class="radio" type="radio" name="attachment" value="https://imgur.com/a/mo79tcf">
+            <img class="radioimg" src="kringet.jpeg">
+        </label>
+        <br>
+        <br>
         <button id="submitButton" class="button" onclick="cringeAlarm()">Cringe Alarm</button>
     </div>
 </body>
 
 </html>
 <script>
-    function checkNone() {
-        var value = document.getElementById("selectuids").value
-        if (value !== "none") {
-            document.getElementById("uid").style.borderColor = "crimson"
-            document.getElementById("uid").disabled = true
-        } else {
-            document.getElementById("uid").style.borderColor = "rgb(0, 255, 255)"
-            document.getElementById("uid").disabled = false
-        }
-    }
     var input = document.getElementById("uid");
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
@@ -87,8 +87,16 @@
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Cookie", "__dcfduid=b84ae564190346e69b1981061304a72a");
 
+        var imgs = document.getElementsByName('attachment');
+        var selectedimg;
+        for(var i = 0; i < imgs.length; i++){
+            if(imgs[i].checked){
+                selectedimg = imgs[i].value;
+            }
+        }
+
         var raw = JSON.stringify({
-            "content": "https://tenor.com/view/dies-of-cringe-cringe-gif-20747133"
+            "content": selectedimg
         });
 
         var requestOptions = {

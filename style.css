@@ -3,6 +3,28 @@
     --blue: rgb(0, 255, 255);
 }
 
+.radio:checked + .radioimg{
+    border-style: none;
+    outline: 2px solid rgb(252, 113, 113);
+}
+
+.radio + .radioimg{
+    cursor: pointer;
+}
+
+.radio{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: relative;
+    top: -25px;
+}
+
+.radioimg{
+    position: relative;
+    width: 20%;
+}
+
 .err {
     color: crimson;
     display: none;
@@ -51,6 +73,8 @@ body {
 }
 
 #selectuids {
+    font-size: 15px;
+    background-color: var(--light-blue);
     border-style: solid;
     border-radius: 5px;
     border-color: var(--blue);
