@@ -2,100 +2,40 @@
 <html>
 
 <head>
-    <title>Cringe</title>
+    <title>Command Sender</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <h2 class="rainbow">Press this button to use <i>Cringe Alarm</i></h2>
+    <h2 class="rainbow">Press this button to use <i>Command Sender</i></h2>
     <div id="form">
-        <label for="uid">User ID:</label>
-        <input oninput="checkNum()" type="text" id="uid" name="uid">
-        <select name="uids" id="selectuids" oninput="checkNone()">
+        <label for="cid">Voice channel id:</label>
+        <input type="text" id="cid" name="cid">
+        <br>
+        <br>
+        <label for="gids">Guild Name:</label>
+        <select name="gids" id="selectgids">
             <option value="none">none</option>
-            <option value="335796270516142090">Arsyde</option>
-            <option value="349113797790793729">BandiAndi</option>
-            <option value="436878536620376065">Besvokxd</option>
-            <option value="454282636043747328">BullTheKing26</option>
-            <option value="726722528105726012">NMate</option>
-            <option value="619901821456089099">Sugárbácsi</option>
-            <option value="599567148377178115">Szilaj13</option>
-            <option value="409667707148173323">Vbráner</option>
+            <option value="https://discord.com/api/webhooks/857196303801122836/_ld-DdBDfNDQTzr000iTSSjyecuIoyZGHdVq19eZy9hgD48ltECVjKz1CJ9mNMFU9CXR">9.P</option>
+            <option value="https://discord.com/api/webhooks/857244971881857044/bDFAJoN0tzwFyk2L7ImrqppYgKWFrEncfp8ZZQKuX2IeAY0WIdxt582o43pKndugG30N">Sea of Oof</option>
         </select>
         <br>
         <br id="err4">
         <label id="err" class="err">Must be number!</label>
         <br id="err2" class="err">
         <br id="err3" class="err">
-        <label>
-            <input oninput="setTo0()" class="radio" type="radio" name="attachment" value="https://tenor.com/view/dies-of-cringe-cringe-gif-20747133" checked>
-            <img class="radioimg" src="gif.gif">
-        </label>
-        <label>
-            <input oninput="setTo1()" class="radio" type="radio" name="attachment" value="https://imgur.com/a/mo79tcf">
-            <img class="radioimg" src="kringet.jpeg">
-        </label>
+        <label for="cname">Command name:</label>
+        <input type="text" id="cname" name="cname">
         <br>
         <br>
-        <input type="url" name="customAttachment" id="customAttachment" placeholder="custom attachment" oninput="checkCusAttInput()">
-        <br>    
-        <br>
-        <button id="submitButton" class="button" onclick="cringeAlarm()">Cringe Alarm</button>
+        <button id="submitButton" class="button" onclick="sendCommand()">Send Command</Command></button>
     </div>
 </body>
 
 </html>
 <script>
-    document.cookie = "lastImg=0"
-    function setTo0(){
-        document.cookie = "lastImg=0"
-    }
-    function setTo1(){
-        document.cookie = "lastImg=1"
-    }
-
-    function checkCusAttInput(){
-        //console.log(lastImg)
-        var lastImg = getCookie("lastImg")
-        console.log(lastImg)
-        if(document.getElementById("customAttachment").value !== ""){
-            console.log("if")
-            var imgs = document.getElementsByName('attachment');
-            for(var i = 0; i < imgs.length; i++){
-                if(imgs[i].checked){
-                    imgs[i].checked = false
-                    console.log(document.cookie)
-                }
-            }
-        } else if (document.getElementById("customAttachment").value === ""){
-            console.log("elseif")
-            var imgs = document.getElementsByName('attachment');
-            imgs[lastImg].checked = true
-        } else {
-            console.log("else")
-            document.getElementsByName('attachment').checked = true
-            
-        }
-    }
-
-    function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-
-    var input = document.getElementById("uid");
+    var input = document.getElementById("cid");
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
         // Number 13 is the "Enter" key on the keyboard
@@ -108,128 +48,48 @@
         }
     });
 
-    function checkNum() {
-        const value = document.getElementById("uid").value
-        console.log(value)
-        if (value !== "") {
-            document.getElementById("selectuids").disabled = true
-            document.getElementById("selectuids").style.borderColor = "crimson"
-        } else {
-            document.getElementById("selectuids").disabled = false
-            document.getElementById("selectuids").style.borderColor = "rgb(0, 255, 255)"
-        }
-        if (isNaN(value) === true) {
-            document.getElementById("err").style.display = "block"
-            document.getElementById("err2").style.display = "block"
-            document.getElementById("err4").style.display = "none"
-            document.getElementById("submitButton").disabled = true
-            document.getElementById("submitButton").style.borderColor = "crimson"
-        } else {
-            document.getElementById("err").style.display = "none"
-            document.getElementById("err2").style.display = "none"
-            document.getElementById("err4").style.display = "block"
-            document.getElementById("submitButton").disabled = false
-            document.getElementById("submitButton").style.borderColor = "rgb(0, 255, 255)"
-        }
-    }
+    // function checkNum() {
+    //     const value = document.getElementById("gid").value
+    //     console.log(value)
+    //     if (value !== "") {
+    //         document.getElementById("selectgids").disabled = true
+    //         document.getElementById("selectgids").style.borderColor = "crimson"
+    //     } else {
+    //         document.getElementById("selectgids").disabled = false
+    //         document.getElementById("selectgids").style.borderColor = "rgb(0, 255, 255)"
+    //     }
+    //     if (isNaN(value) === true) {
+    //         document.getElementById("err").style.display = "block"
+    //         document.getElementById("err2").style.display = "block"
+    //         document.getElementById("err4").style.display = "none"
+    //         document.getElementById("submitButton").disabled = true
+    //         document.getElementById("submitButton").style.borderColor = "crimson"
+    //     } else {
+    //         document.getElementById("err").style.display = "none"
+    //         document.getElementById("err2").style.display = "none"
+    //         document.getElementById("err4").style.display = "block"
+    //         document.getElementById("submitButton").disabled = false
+    //         document.getElementById("submitButton").style.borderColor = "rgb(0, 255, 255)"
+    //     }
+    // }
 
-    function cringeAlarm() {
+    function sendCommand() {
         var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Cookie", "__dcfduid=b84ae564190346e69b1981061304a72a");
-        if(document.getElementById("customAttachment").value === ""){
-            var imgs = document.getElementsByName('attachment');
-            var selectedimg;
-            for(var i = 0; i < imgs.length; i++){
-                if(imgs[i].checked){
-                    selectedimg = imgs[i].value;
-                }
-            }
-            var raw = JSON.stringify({
-                "content": selectedimg
-            });
-        } else {
-            var raw = JSON.stringify({
-                "content": document.getElementById("customAttachment").value
-            });  
-            document.getElementById("customAttachment").value = ""
-        }
 
-        
+        var formdata = new FormData();
+        formdata.append("content", `${document.getElementById("cname").value} ${document.getElementById("cid").value}`);
 
         var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
         };
 
-        fetch("https://discord.com/api/webhooks/851479164544614470/9L_U1OPk12YjzfWmdnFtXVX5klp8zx_mDYBtPFyjiCFCt5vgJaeey7g-MI0coQbLa48K", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-        if (document.getElementById("uid").value === "" && document.getElementById("selectuids").value === "none") {
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Cookie", "__dcfduid=b84ae564190346e69b1981061304a72a");
-
-            var raw = JSON.stringify({
-                "content": "No cringe accepted, please stop!"
-            });
-
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            fetch("https://discord.com/api/webhooks/851479164544614470/9L_U1OPk12YjzfWmdnFtXVX5klp8zx_mDYBtPFyjiCFCt5vgJaeey7g-MI0coQbLa48K", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-        } else {
-            if (document.getElementById("uid").value === "") {
-                var myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                myHeaders.append("Cookie", "__dcfduid=b84ae564190346e69b1981061304a72a");
-
-                var raw = JSON.stringify({
-                    "content": `<@${document.getElementById("selectuids").value}> No cringe accepted, please stop!`
-                });
-
-                var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
-
-                fetch("https://discord.com/api/webhooks/851479164544614470/9L_U1OPk12YjzfWmdnFtXVX5klp8zx_mDYBtPFyjiCFCt5vgJaeey7g-MI0coQbLa48K", requestOptions)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
-            } else {
-                var myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                myHeaders.append("Cookie", "__dcfduid=b84ae564190346e69b1981061304a72a");
-
-                var raw = JSON.stringify({
-                    "content": `<@${document.getElementById("uid").value}> No cringe accepted, please stop!`
-                });
-
-                var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
-
-                fetch("https://discord.com/api/webhooks/851479164544614470/9L_U1OPk12YjzfWmdnFtXVX5klp8zx_mDYBtPFyjiCFCt5vgJaeey7g-MI0coQbLa48K", requestOptions)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
-            }
-        }
+        fetch(document.getElementById("selectgids").value, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
     }
 </script>

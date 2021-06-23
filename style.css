@@ -65,14 +65,21 @@ body {
     /* Standard syntax (must be last) */
 }
 
-#uid {
+#cname {
     border-color: var(--blue);
     border-style: solid;
     border-radius: 5px;
     background-color: var(--light-blue);
 }
 
-#selectuids {
+#cid {
+    border-color: var(--blue);
+    border-style: solid;
+    border-radius: 5px;
+    background-color: var(--light-blue);
+}
+
+#selectgids {
     font-size: 15px;
     background-color: var(--light-blue);
     border-style: solid;
